@@ -1,38 +1,162 @@
-.App {
+.task-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* Use a grid layout for both the header and the task rows */
+.task-header, .task-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr; /* Adjust the fractions to match the width of each column */
+  text-align: left;
+}
+/* If you have a button or input as part of a cell, ensure it fills the cell */
+.task-header-cell, .task-cell, .task-cell > button, .task-cell > input {
+  width: 100%;
+}
+
+.task-row {
+  display: grid; /* Use grid layout for better alignment of items */
+  grid-template-columns: repeat(5, 1fr); /* Adjust the number of columns as per your requirements */
+  gap: 10px; /* Spacing between grid items */
+  padding: 10px;
+  border-bottom: 1px solid #ccc; /* Border between rows */
+  align-items: center; /* Vertical alignment */
+}
+
+/* Style your task cells */
+.task-cell {
+  padding: 10px;
+  border-right: 1px solid #ccc; /* Vertical gridline */
+  border-bottom: 1px solid #ccc; /* Horizontal gridline */
+}
+/* Remove the right border for the last cell in both header and task rows */
+.task-header-cell:last-child, .task-cell:last-child {
+  border-right: none;
+}
+/* Add a specific class for cells that need centering, if any */
+.task-cell-centered {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Status Indicator Styles */
+.status-indicator {
+  display: inline-block; /* To fit within the grid cell */
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  text-align: center; /* Center the text inside the indicator */
+  width: 100%; /* Full width of the cell */
+  padding: 5px 0; /* Padding top and bottom */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Specific styles for each status */
+.status-working {
+  background-color: #ffa726; /* Orange */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.status-done {
+  background-color: #66bb6a; /* Green */
+}
+
+.status-stuck {
+  background-color: #ef5350; /* Red */
+}
+
+/* Priority Indicator Styles */
+.priority-indicator {
+  display: inline-block; /* To fit within the grid cell */
+  border-radius: 5px;
   color: white;
+  text-align: center; /* Center the text inside the indicator */
+  width: 100%; /* Full width of the cell */
+  padding: 5px 0; /* Padding top and bottom */
 }
 
-.App-link {
-  color: #61dafb;
+/* Specific styles for each priority */
+.priority-low {
+  background-color: #42a5f5; /* Blue */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.priority-medium {
+  background-color: #ffee58; /* Yellow */
+  color: black; /* Text color for better readability */
+}
+
+.priority-high {
+  background-color: #ab47bc; /* Purple */
+}
+
+/* New Task Form Styles */
+.new-task-form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.new-task-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.new-task-button {
+  padding: 10px 20px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.new-task-button:hover {
+  background-color: #4cae4c;
+}
+
+/* Editing Styles */
+.editing .task-cell {
+  border: 1px solid #ccc; /* Border for editing cells */
+  border-radius: 4px; /* Rounded corners for inputs */
+}
+
+/* Hide the last cell's border */
+.task-row .task-cell:last-child {
+  border-right: none;
+}
+
+
+
+/* Media query for responsive adjustments */
+@media (max-width: 768px) {
+  .task-row {
+    grid-template-columns: 1fr; /* Stack the cells on smaller screens */
   }
-  to {
-    transform: rotate(360deg);
+  .new-task-form {
+    grid-template-columns: 1fr; /* Stack the form elements on smaller screens */
   }
+}
+.task-header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Adjust based on the number of columns you have */
+  background-color: #f3f3f3; /* Background color for the header */
+  font-weight: bold;
+  text-align: left;
+}
+
+.task-header-cell {
+  padding: 10px;
+  background-color: #f3f3f3; /* Background color for header cells */
+  font-weight: bold;
+  border-right: 1px solid #ccc; /* Vertical gridline */
+}
+
+/* Remove the right border for the last cell in the header */
+.task-header-cell:last-child {
+  border-right: none;
+}
+
+
+h1 {
+  color:#a26e6e;
+  text-align: center;
 }
